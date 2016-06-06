@@ -1,0 +1,5 @@
+1. Create test scripts for flying of drone and hovering to collect spectrum in orbit-lab.
+2. Figure out USB interface with the drone.
+3. Remove video streaming from drone capability to save bandwidth, write binary to stream spectrum from the USB device instead.
+4. Write client software to pipe streamed spectrum into the analyzer.
+5. Figure out control software, eg change settings on collector/analyzer with one middle client program.
