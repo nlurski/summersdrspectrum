@@ -9,7 +9,7 @@ client
   .after(3000, function() {
     this.stop();
   })
-  .after(10000, function() {
+  .after(1000, function() {
     this.stop();
     this.land();
   });
