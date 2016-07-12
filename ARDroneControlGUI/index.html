@@ -14,7 +14,7 @@
   <body style="background-color: #555555; color: white;">
     <div class="container-fluid fullHeight" style="background-color: #111111; text-align: center; margin: auto; content-align: center;">
         <div class="row twoThirdHeight">
-            <div class="col-sm-8">
+            <div id="dronestream" class="col-sm-8">
                 video feed
                 
             </div>
@@ -30,7 +30,7 @@
         </div>
         <div class="row thirdHeight">
             <h3>Speed</h3>
-            <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="5"/>
+            <input id="ex1" data-slider-id='ex1Slider' type="range" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="5"/>
             
         </div>
     </div>
@@ -41,10 +41,13 @@
 <!-- Script imports etc  -->
     <script src="jsLib/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="dronestream/nodecopter-client.js"></script>
 <!-- Insert this line after script imports -->
 <script>if (window.module) module = window.module;</script>
     
     <script type="text/javascript">
+        var arDrone = require('ar-drone');
+        var arClient  = arDrone.createClient();
         speed = .1;
         function getContentHeight(){
             if($(window).height() > 300)
@@ -54,7 +57,6 @@
                     return 300;
                 }
             }
-        
         function dynCSS(){
                 $(".fullHeight").css("height", getContentHeight());
                 $(".thirdHeight").css("height", getContentHeight()/3);
@@ -62,19 +64,15 @@
                 $(".twoNinthHeight").css("height", 2*getContentHeight()/9);
         }
         dynCSS();
-        var slider = new Slider('#ex1', {
-            formatter: function(value) {
-                return 'Current value: ' + value;
-            }
-        });
         window.onresize = dynCSS;
-        $(window).keypress(function (e) {
+        new NodecopterStream(document.getElementById("dronestream"));
+        $(window).keydown(function (e) {
                     //use e.which
             var keyCode = e.which;
             console.log(e, keyCode, e.which)
             if (keyCode == 38) {
                 console.log("up");
-                arClient.front(speed);
+                arClient.front(ex1.value);
             } else if(keyCode == 40){
                 console.log("down");
                 arClient.back(speed);
@@ -82,7 +80,8 @@
                 console.log("left");
                 arClient.left(speed);
             } else if(keyCode == 39){
-                console.right("right");
+                console.log("right");
+                arClient.right(speed)
             } else if(keyCode == 87){
                 console.log("W");
             } else if(keyCode == 83){
@@ -92,7 +91,8 @@
             } else if(keyCode == 68){
                 console.log("D");
             }
-        })
+        });
+        window.onbeforeunload = arClient.land;
 </script>
   </body>
 </html>

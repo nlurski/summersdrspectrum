@@ -3,11 +3,15 @@ const electron = require('electron');
 const {app} = electron;
 // Module to create native browser window.
 const {BrowserWindow} = electron;
-
+var http = require("http");
+var server = http.createServer(function(req, res) {
+  require("fs").createReadStream(__dirname + "/index.html").pipe(res);
+});
+/*
 var arDrone = require('ar-drone');
 var arClient  = arDrone.createClient();
-
-
+*/
+dronstream = require("dronestream").listen(server); 
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -16,7 +20,7 @@ let win;
 
 function createWindow() {
   //Start AR Drone takeoff sequence
-  arClient.takeoff();
+  //arClient.takeoff();
   
   // Create the browser window.
   win = new BrowserWindow({width: 800, height: 600});
@@ -42,11 +46,14 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
 
+
+
+
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
   // On macOS it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
-   arClient.land();
+  //arClient.land();
   if (process.platform !== 'darwin') {
     app.quit();
   }
@@ -57,7 +64,7 @@ app.on('activate', () => {
   // dock icon is clicked and there are no other windows open.
   if (win === null) {
     createWindow();
-    arClient.takeoff();
+    //arClient.takeoff();
   }
 
 });
