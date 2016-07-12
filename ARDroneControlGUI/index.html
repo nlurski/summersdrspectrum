@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>AR Drone Control</title>
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+
+  </head>
+  <body style="background-color: #555555; color: white;">
+    <div class="container-fluid fullHeight" style="background-color: #111111; text-align: center; margin: auto; content-align: center;">
+        <div class="row twoThirdHeight">
+            <div class="col-sm-8">
+                video feed
+                
+            </div>
+            <div class="col-sm-4">
+                
+                <button type="button" onclick="arClient.takeoff()" class="twoNinthHeight btn btn-large btn-block btn-primary">Take Off</button>
+                
+                <button type="button" onclick="arClient.land()" class="twoNinthHeight btn btn-large btn-block btn-primary">Land</button>
+
+                <button type="button" class="twoNinthHeight btn btn-large btn-block btn-primary">Data</button>
+                
+            </div>
+        </div>
+        <div class="row thirdHeight">
+            <h3>Speed</h3>
+            <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="5"/>
+            
+        </div>
+    </div>
+
+    <!-- Insert this line above script imports  -->
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+<!-- Script imports etc  -->
+    <script src="jsLib/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- Insert this line after script imports -->
+<script>if (window.module) module = window.module;</script>
+    
+    <script type="text/javascript">
+        speed = .1;
+        function getContentHeight(){
+            if($(window).height() > 300)
+                {
+                    return $(window).height();
+                } else {
+                    return 300;
+                }
+            }
+        
+        function dynCSS(){
+                $(".fullHeight").css("height", getContentHeight());
+                $(".thirdHeight").css("height", getContentHeight()/3);
+                $(".twoThirdHeight").css("height", 2*getContentHeight()/3);
+                $(".twoNinthHeight").css("height", 2*getContentHeight()/9);
+        }
+        dynCSS();
+        var slider = new Slider('#ex1', {
+            formatter: function(value) {
+                return 'Current value: ' + value;
+            }
+        });
+        window.onresize = dynCSS;
+        $(window).keypress(function (e) {
+                    //use e.which
+            var keyCode = e.which;
+            console.log(e, keyCode, e.which)
+            if (keyCode == 38) {
+                console.log("up");
+                arClient.front(speed);
+            } else if(keyCode == 40){
+                console.log("down");
+                arClient.back(speed);
+            } else if(keyCode == 37){
+                console.log("left");
+                arClient.left(speed);
+            } else if(keyCode == 39){
+                console.right("right");
+            } else if(keyCode == 87){
+                console.log("W");
+            } else if(keyCode == 83){
+                console.log("S");
+            } else if(keyCode == 65){
+                console.log("A");
+            } else if(keyCode == 68){
+                console.log("D");
+            }
+        })
+</script>
+  </body>
+</html>
+
