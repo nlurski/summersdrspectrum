@@ -9,7 +9,7 @@
     "electron-prebuilt": "^1.2.0",
     "keypress": "*",
     "ar-drone": "*",
-    "dronestream": "*"
-
+    "dronestream": "*",
+    "http": "*"
   }
 }

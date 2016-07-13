@@ -30,7 +30,7 @@
         </div>
         <div class="row thirdHeight">
             <h3>Speed</h3>
-            <input id="ex1" data-slider-id='ex1Slider' type="range" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="5"/>
+            <input id="speed" data-slider-id='speedSlider' type="range" min="0" max="10" step="1" value="5"/>
             
         </div>
     </div>
@@ -48,7 +48,9 @@
     <script type="text/javascript">
         var arDrone = require('ar-drone');
         var arClient  = arDrone.createClient();
-        speed = .1;
+        duration = 30; //ms
+        arClient.takeoff();
+        
         function getContentHeight(){
             if($(window).height() > 300)
                 {
@@ -63,36 +65,67 @@
                 $(".twoThirdHeight").css("height", 2*getContentHeight()/3);
                 $(".twoNinthHeight").css("height", 2*getContentHeight()/9);
         }
+        function forward(){
+            arClient.after(0, function(){this.front(1/speed.value);}).after(duration, function(){this.stop()});
+        }
+        function backward(){
+            arClient.after(0, function(){this.back(1/speed.value);}).after(duration, function(){this.stop()});
+        }
+        function leftward(){
+            arClient.after(0, function(){this.left(1/speed.value);}).after(duration, function(){this.stop()});
+        }
+        function rightward(){
+            arClient.after(0, function(){this.right(1/speed.value);}).after(duration, function(){this.stop()});
+        }
+        function upward(){
+            arClient.after(0, function(){this.up(1/speed.value);}).after(duration, function(){this.stop()});
+        }
+        function downward(){
+            arClient.after(0, function(){this.down(1/speed.value);}).after(duration, function(){this.stop()});
+        }
+        function rotateLeft(){
+            arClient.after(0, function(){this.counterClockwise(1/speed.value);}).after(duration, function(){this.stop()});
+        }
+        function rotateRight(){
+            arClient.after(0, function(){this.clockwise(1/speed.value);}).after(duration, function(){this.stop()});
+        }
+
         dynCSS();
         window.onresize = dynCSS;
-        new NodecopterStream(document.getElementById("dronestream"));
+        
         $(window).keydown(function (e) {
                     //use e.which
             var keyCode = e.which;
             console.log(e, keyCode, e.which)
             if (keyCode == 38) {
                 console.log("up");
-                arClient.front(ex1.value);
+                forward();
             } else if(keyCode == 40){
                 console.log("down");
-                arClient.back(speed);
+                backward();
             } else if(keyCode == 37){
                 console.log("left");
-                arClient.left(speed);
+                leftward();
             } else if(keyCode == 39){
                 console.log("right");
-                arClient.right(speed)
+                rightward();
             } else if(keyCode == 87){
                 console.log("W");
+                upward();
             } else if(keyCode == 83){
                 console.log("S");
+                downward();
             } else if(keyCode == 65){
                 console.log("A");
+                rotateLeft();
             } else if(keyCode == 68){
                 console.log("D");
+                rotateRight();
             }
         });
         window.onbeforeunload = arClient.land;
+
+        new NodecopterStream(document.getElementById("dronestream"));
 </script>
   </body>
 </html>
