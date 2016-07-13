@@ -68,28 +68,28 @@
                 $(".twoNinthHeight").css("height", 2*getContentHeight()/9);
         }
         function forward(){
-            arClient.after(0, function(){this.front(1/speed.value);}).after(duration, function(){this.stop()});
+            arClient.after(0, function(){this.front(10/speed.value);}).after(duration, function(){this.stop()});
         }
         function backward(){
-            arClient.after(0, function(){this.back(1/speed.value);}).after(duration, function(){this.stop()});
+            arClient.after(0, function(){this.back(10/speed.value);}).after(duration, function(){this.stop()});
         }
         function leftward(){
-            arClient.after(0, function(){this.left(1/speed.value);}).after(duration, function(){this.stop()});
+            arClient.after(0, function(){this.left(10/speed.value);}).after(duration, function(){this.stop()});
         }
         function rightward(){
-            arClient.after(0, function(){this.right(1/speed.value);}).after(duration, function(){this.stop()});
+            arClient.after(0, function(){this.right(10/speed.value);}).after(duration, function(){this.stop()});
         }
         function upward(){
-            arClient.after(0, function(){this.up(1/speed.value);}).after(duration, function(){this.stop()});
+            arClient.after(0, function(){this.up(10/speed.value);}).after(duration, function(){this.stop()});
         }
         function downward(){
-            arClient.after(0, function(){this.down(1/speed.value);}).after(duration, function(){this.stop()});
+            arClient.after(0, function(){this.down(10/speed.value);}).after(duration, function(){this.stop()});
         }
         function rotateLeft(){
-            arClient.after(0, function(){this.counterClockwise(1/speed.value);}).after(duration, function(){this.stop()});
+            arClient.after(0, function(){this.counterClockwise(10/speed.value);}).after(duration, function(){this.stop()});
         }
         function rotateRight(){
-            arClient.after(0, function(){this.clockwise(1/speed.value);}).after(duration, function(){this.stop()});
+            arClient.after(0, function(){this.clockwise(10/speed.value);}).after(duration, function(){this.stop()});
         }
 
         dynCSS();
