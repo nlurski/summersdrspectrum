@@ -49,8 +49,10 @@
         var arDrone = require('ar-drone');
         var arClient  = arDrone.createClient();
         duration = 30; //ms
+        maxHeight = 2; //m
         arClient.takeoff();
-        
+        arClient.stop();
+        arClient.config('control:altitude_max', maxHeight);
         function getContentHeight(){
             if($(window).height() > 300)
                 {
