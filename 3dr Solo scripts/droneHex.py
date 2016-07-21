@@ -20,6 +20,8 @@ def getLoc(latitude,longitude,x,y):
     new_longitude = longitude + (x / r) * (180/math.pi)/math.cos(latitude * math.pi/180);
     return LocationGlobalRelative(new_latitude,new_longitude,alt)
 
+
+#need to change this to accept these as user input parameters
 myLat = vehicle.location.global_frame.lat
 myLon = vehicle.location.global_frame.lon
 
