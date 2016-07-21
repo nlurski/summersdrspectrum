@@ -54,7 +54,7 @@ time.sleep(3)
 print " Global Location: %s" % vehicle.location.global_frame
 gpsData[time.time()] = vehicle.location.global_frame
 
-vehicle.simple_goto(getLoc(myLat,myLon,-10,0))
+vehicle.simple_goto(getLoc(myLat,myLon,-1*hexR,0))
 time.sleep(3)
 print " Global Location: %s" % vehicle.location.global_frame
 gpsData[time.time()] = vehicle.location.global_frame
