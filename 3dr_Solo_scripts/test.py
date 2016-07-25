@@ -1,7 +1,7 @@
 import math
 
 r = 6371000.0
-kmdeg = 371000*(2*math.pi/360)
+kmdeg = 6371000*(2*math.pi/360)
 hexR = 10.0
 
 def getLoc(latitude,longitude,x,y):
