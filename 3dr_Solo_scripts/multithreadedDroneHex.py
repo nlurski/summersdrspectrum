@@ -4,6 +4,7 @@ import math
 import sys
 import time
 import json
+import datetime
 
 
 flying = True
@@ -35,42 +36,50 @@ myLon = vehicle.location.global_frame.lon
 vehicle.simple_goto(getLoc(myLat,myLon,-1*hexR/2,hexR*math.sqrt(3)/2))
 time.sleep(3)
 print " Global Location: %s" % vehicle.location.global_frame
-gpsData[time.time()] = vehicle.location.global_frame
+#gpsData[time.time()] = vehicle.location.global_frame
+gpsData[datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S')] = vehicle.location.global_frame
 
 vehicle.simple_goto(getLoc(myLat,myLon,hexR/2,hexR*math.sqrt(3)/2))
 time.sleep(3)
 print " Global Location: %s" % vehicle.location.global_frame
-gpsData[time.time()] = vehicle.location.global_frame
+#gpsData[time.time()] = vehicle.location.global_frame
+gpsData[datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S')] = vehicle.location.global_frame
 
 vehicle.simple_goto(getLoc(myLat,myLon,hexR,0))
 time.sleep(3)
 print " Global Location: %s" % vehicle.location.global_frame
-gpsData[time.time()] = vehicle.location.global_frame
+#gpsData[time.time()] = vehicle.location.global_frame
+gpsData[datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S')] = vehicle.location.global_frame
 
 vehicle.simple_goto(getLoc(myLat,myLon,hexR/2,-1*hexR*math.sqrt(3)/2))
 time.sleep(3)
 print " Global Location: %s" % vehicle.location.global_frame
-gpsData[time.time()] = vehicle.location.global_frame
+#gpsData[time.time()] = vehicle.location.global_frame
+gpsData[datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S')] = vehicle.location.global_frame
 
 vehicle.simple_goto(getLoc(myLat,myLon,-1*hexR/2,-1*hexR*math.sqrt(3)/2))
 time.sleep(3)
 print " Global Location: %s" % vehicle.location.global_frame
-gpsData[time.time()] = vehicle.location.global_frame
+#gpsData[time.time()] = vehicle.location.global_frame
+gpsData[datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S')] = vehicle.location.global_frame
 
 vehicle.simple_goto(getLoc(myLat,myLon,-10,0))
 time.sleep(3)
 print " Global Location: %s" % vehicle.location.global_frame
-gpsData[time.time()] = vehicle.location.global_frame
+#gpsData[time.time()] = vehicle.location.global_frame
+gpsData[datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S')] = vehicle.location.global_frame
 
 vehicle.simple_goto(getLoc(myLat,myLon,-1*hexR/2,hexR*math.sqrt(3)/2))
 time.sleep(3)
 print " Global Location: %s" % vehicle.location.global_frame
-gpsData[time.time()] = vehicle.location.global_frame
+#gpsData[time.time()] = vehicle.location.global_frame
+gpsData[datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S')] = vehicle.location.global_frame
 
 vehicle.simple_goto(LocationGlobalRelative(myLat,myLon,alt))
 time.sleep(3)
 print " Global Location: %s" % vehicle.location.global_frame
-gpsData[time.time()] = vehicle.location.global_frame
+#gpsData[time.time()] = vehicle.location.global_frame
+gpsData[datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S')] = vehicle.location.global_frame
 
 vehicle.close()
 print("done")
