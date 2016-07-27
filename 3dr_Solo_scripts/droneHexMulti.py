@@ -69,7 +69,8 @@ def runA():
 
 def runB():
     while run:
-        gpsData[time.time()] = str(vehicle.location.global_frame)
+        #gpsData[time.time()] = str(vehicle.location.global_frame)
+        gpsData[datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S')] = str(vehicle.location.global_frame)
         time.sleep(.1)
     with open('gpsTimestamps', 'w') as f:
         json.dump(gpsData, f)
