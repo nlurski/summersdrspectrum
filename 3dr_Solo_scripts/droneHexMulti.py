@@ -16,6 +16,7 @@ vehicle.mode = VehicleMode("GUIDED")
 vehicle.groundspeed = 5
 run = True
 def runA():
+    global run
     r = 6371000.0
     kmdeg = 6371000*(2*math.pi/360)
     hexR = 10.0
@@ -68,6 +69,7 @@ def runA():
     print("done")
 
 def runB():
+    global run
     while run:
         #gpsData[time.time()] = str(vehicle.location.global_frame)
         gpsData[datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S')] = str(vehicle.location.global_frame)
@@ -78,6 +80,8 @@ def runB():
 if __name__ == "__main__":
     t1 = Thread(target = runA)
     t2 = Thread(target = runB)
+    t1.isDaemon()
+    t2.isDaemon()
     t1.start()
     t2.start()
     t1.join()
