@@ -1,3 +1,4 @@
+from __future__ import division
 from dronekit import *
 from dronekit import connect
 import math
