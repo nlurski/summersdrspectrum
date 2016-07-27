@@ -24,7 +24,7 @@ def runA():
     def getLoc(latitude,longitude,x,y):
         new_latitude  = latitude + (y/r)*(180/math.pi);
         new_longitude = longitude + (x / r) * (180/math.pi)/math.cos(latitude * math.pi/180);
-        return LocationGlobalRelative(new_latitude,new_longitude,alt)
+        return (LocationGlobalRelative(new_latitude,new_longitude,alt))
 
 
     #need to change this to accept these as user input parameters
@@ -74,7 +74,7 @@ def runB():
     with open('gpsTimestamps', 'w') as f:
         json.dump(gpsData, f)
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     t1 = Thread(target = runA)
     t2 = Thread(target = runB)
     t1.start()
