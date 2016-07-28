@@ -5,6 +5,7 @@ import math
 import sys
 import time
 import json
+import datetime
 from threading import Thread
 # make dict for dumping later
 gpsData = {}
