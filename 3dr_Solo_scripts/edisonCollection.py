@@ -13,7 +13,7 @@ sdr.sample_rate = 2.4e6
 sdr.center_freq = sys.argv[1]
 sdr.gain = 40
 while True:
-    samples = sdr.read_samples(256*1024)
+    samples = sdr.read_samples(256*4096)
     print(samples)
 
     spectrum[time.time()] = str(samples)
