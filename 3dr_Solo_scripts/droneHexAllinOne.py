@@ -89,7 +89,7 @@ def runC():
     sdr.center_freq = 900e6
     sdr.gain = 40
     global run
-        samples = sdr.read_samples(256*4096
+        samples = sdr.read_samples(256*4096)
         spectrum[time.time()] = str(samples)
     with open('spectrumData', 'w') as g:
         json.dump(spectrum, g)
